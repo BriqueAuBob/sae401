@@ -6,6 +6,7 @@ use App\Dto\CreateUserDto;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,12 +27,15 @@ class ApiLoginController extends AbstractController
     }
 
     #[Route('/api/auth/register', name: 'api_register', methods: ['POST'])]
-    public function register(#[MapRequestPayload] CreateUserDto $createUser, UserPasswordHasherInterface $passwordHasher): JsonResponse
+    public function register(#[MapRequestPayload] CreateUserDto $createUser, UserPasswordHasherInterface $passwordHasher, JWTTokenManagerInterface $tokenManager): JsonResponse
     {
         $userExists = $this->userRepository->findOneBy(['email' => $createUser->email]);
         if (null !== $userExists) {
             return $this->json([
-                'message' => 'Cet email est déjà utilisé.',
+                "violations" => array([
+                    'message' => 'Cet email est déjà utilisé.',
+                    'field' => 'email',
+                ])
             ], Response::HTTP_CONFLICT);
         }
 
@@ -42,17 +46,15 @@ class ApiLoginController extends AbstractController
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
-
+        
         return $this->json([
-            'user' => $user,
+            'token' => $tokenManager->create($user)
         ]);
     }
 
     #[Route('/api/users/@me', name: 'api_me', methods: ['GET'])]
     public function me(): JsonResponse
     {
-        return $this->json([
-            'user' => $this->getUser(),
-        ]);
+        return $this->json($this->getUser());
     }
 }
