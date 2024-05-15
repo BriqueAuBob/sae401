@@ -28,7 +28,7 @@ class PreferenceController extends AbstractController
     ): \Symfony\Component\HttpKernel\Exception\NotFoundHttpException|JsonResponse
     {
         if ($preference->getUser()->getUserIdentifier() !== $this->getUser()->getUserIdentifier()) {
-            return $this->createNotFoundException();
+            throw $this->createNotFoundException("Preference introuvable");
         }
 
         $preference->setPvalue($updatePreferenceDto->pvalue);
