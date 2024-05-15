@@ -1,10 +1,12 @@
 import { defineStore } from "pinia";
 import { onMounted, ref } from "vue";
 import { fetchFromApi } from "../lib/fetch";
+import type { Preference } from "../types/preference";
 
 type User = {
   username: string;
   email: string;
+  preferences: Preference[];
 };
 
 export default defineStore("user", () => {
@@ -51,10 +53,25 @@ export default defineStore("user", () => {
     });
   };
 
+  const logout = () => {
+    token.value = null;
+    user.value = null;
+    localStorage.removeItem("token");
+  }
+
+  const updatePreference = async (preference: Preference) => {
+    if (!user.value) return;
+    const prefStore = user.value?.preferences?.find(p => p.id === preference.id);
+    if (!prefStore) return;
+    prefStore.pvalue = preference.pvalue;
+  }
+
   return {
     user,
     token,
     login,
     register,
+    logout,
+    updatePreference
   };
 });
