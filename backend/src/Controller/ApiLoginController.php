@@ -3,12 +3,15 @@
 namespace App\Controller;
 
 use App\Dto\CreateUserDto;
+use App\Entity\Preference;
 use App\Entity\User;
+use App\Event\UserCreateEvent;
 use App\Repository\UserRepository;
 use App\Services\FrontEndUrlGeneratorService;
 use App\Services\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +34,12 @@ class ApiLoginController extends AbstractController
     }
 
     #[Route('/api/auth/register', name: 'api_register', methods: ['POST'])]
-    public function register(#[MapRequestPayload] CreateUserDto $createUser, UserPasswordHasherInterface $passwordHasher, JWTTokenManagerInterface $tokenManager): JsonResponse
+    public function register(
+        #[MapRequestPayload] CreateUserDto $createUser,
+        UserPasswordHasherInterface $passwordHasher,
+        JWTTokenManagerInterface $tokenManager,
+        EventDispatcherInterface $eventDispatcher
+    ): JsonResponse
     {
         $userExists = $this->userRepository->findOneBy(['email' => $createUser->email]);
         if (null !== $userExists) {
@@ -50,6 +58,8 @@ class ApiLoginController extends AbstractController
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
+
+        $eventDispatcher->dispatch(new UserCreateEvent($user), UserCreateEvent::NAME);
 
         return $this->json([
             'token' => $tokenManager->create($user)
