@@ -25,7 +25,7 @@ class PreferenceController extends AbstractController
         Preference                               $preference,
         #[MapRequestPayload] UpdatePreferenceDto $updatePreferenceDto,
         EntityManagerInterface                   $entityManager
-    ): \Symfony\Component\HttpKernel\Exception\NotFoundHttpException|JsonResponse
+    ): JsonResponse
     {
         if ($preference->getUser()->getUserIdentifier() !== $this->getUser()->getUserIdentifier()) {
             throw $this->createNotFoundException("Preference introuvable");
