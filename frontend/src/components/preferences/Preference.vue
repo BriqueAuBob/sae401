@@ -23,6 +23,7 @@ const components = {
 };
 
 const handleModification = () => {
+  if (!props.preference.id) return;
   fetchFromApi(`/users/@me/preferences/${props.preference.id}`, {
     method: 'PUT',
     body: {
@@ -48,14 +49,16 @@ const handleModification = () => {
         v-if="wrappedPreference?.component"
         :is="wrappedPreference?.component"
         v-model="preference.pvalue"
-        v-bind="wrappedPreference"
         @update:modelValue="handleModification"
+        v-bind="wrappedPreference"
+        v-on="wrappedPreference.events || {}"
       />
       <component
         v-else-if="components[preference.ptype as keyof typeof components]"
         :is="components[preference.ptype as keyof typeof components]"
         v-model="preference.pvalue"
         @blur="handleModification"
+        v-on="wrappedPreference.events || {}"
       />
     </div>
   </div>

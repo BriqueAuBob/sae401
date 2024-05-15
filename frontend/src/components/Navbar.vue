@@ -5,7 +5,6 @@ import Input from './Input.vue';
 import Button from './Button.vue';
 import { ref } from 'vue';
 import Avatar from './Avatar.vue';
-import SwitchTheme from './SwitchTheme.vue';
 
 const city = ref('');
 const router = useRouter();
@@ -47,7 +46,6 @@ const searchCity = () => {
         @keyup.enter="searchCity"
       />
       <div class="flex items-center gap-2">
-        <SwitchTheme />
         <div v-if="!userStore.user">
           <router-link
             :to="{

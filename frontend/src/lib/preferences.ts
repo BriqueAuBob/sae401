@@ -1,5 +1,6 @@
 import Cities from '../components/preferences/Editors/Cities.vue';
 import TabSelector from '../components/preferences/Editors/TabSelector.vue';
+import SwitchTheme from '../components/SwitchTheme.vue';
 
 export interface Preference {
   title: string;
@@ -7,6 +8,7 @@ export interface Preference {
   value: any;
   options?: { value: any; label: string }[];
   component?: any;
+  events?: { [key: string]: Function };
 }
 
 const PREFERENCES: {
@@ -28,6 +30,21 @@ const PREFERENCES: {
     description: 'Ajoutez ou supprimez des villes pour lesquelles vous souhaitez afficher les prévisions météorologiques.',
     value: [],
     component: Cities,
+  },
+  theme: {
+    title: 'Thème',
+    description: "Choisissez un thème pour personnaliser l'apparence de l'application.",
+    value: 'light',
+    options: [
+      { value: 'light', label: 'Clair' },
+      { value: 'dark', label: 'Sombre' },
+    ],
+    component: SwitchTheme,
+    events: {
+      'update:modelValue': (value: string) => {
+        console.log('value', value);
+      },
+    },
   },
 };
 
