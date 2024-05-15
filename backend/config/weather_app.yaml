@@ -1,0 +1,12 @@
+weather_app:
+  name: WeatherApp
+
+when@dev:
+  weather_app:
+    name: WeatherAppTest
+
+    frontend_url: http://localhost:5173/
+
+when@prod:
+    weather_app:
+       frontend_url: http://localhost:5173/
