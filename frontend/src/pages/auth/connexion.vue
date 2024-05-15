@@ -51,7 +51,7 @@ const login = () => {
         :to="{
           name: '/auth/inscription',
         }"
-        class="text-primary-900 mt-2 self-start text-sm underline"
+        class="text-primary-900 dark:text-primary-300 mt-2 self-start text-sm underline"
       >
         Pas encore de compte ? Inscrivez-vous
       </RouterLink>

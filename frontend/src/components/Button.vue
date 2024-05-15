@@ -33,7 +33,13 @@ const color = computed(() => {
 </script>
 
 <template>
-  <button :class="[color, `rounded-full border border-neutral-200 px-4 py-2 font-medium shadow-sm duration-200`, sizes[size]]">
+  <button
+    :class="[
+      color,
+      `rounded-full border border-neutral-200 px-4 py-2 font-medium shadow-sm duration-200 dark:border-neutral-400`,
+      sizes[size],
+    ]"
+  >
     <slot></slot>
   </button>
 </template>

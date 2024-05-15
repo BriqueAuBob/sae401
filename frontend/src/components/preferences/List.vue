@@ -8,12 +8,12 @@ const { data: preferences, loading } = useFetch<Preference[]>('/users/@me/prefer
 </script>
 
 <template>
-  <section class="overflow-hidden rounded-3xl bg-white shadow-md shadow-neutral-200">
+  <section class="overflow-hidden rounded-3xl bg-white shadow-md shadow-neutral-200 dark:bg-neutral-800 dark:shadow-neutral-800">
     <div class="p-4">
       <h2 class="text-lg font-semibold">Préférences</h2>
       <p class="text-sm">Modifie les préférences associées à ton compte !</p>
     </div>
-    <div class="mx-1 mb-1 rounded-3xl bg-neutral-100">
+    <div class="mx-1 mb-1 rounded-3xl bg-neutral-100 dark:bg-neutral-700">
       <LoadingIndicator v-if="loading" class="min-h-96" />
       <ul v-else class="flex flex-col divide-y">
         <li v-for="preference in preferences" :key="preference.id">

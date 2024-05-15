@@ -31,10 +31,12 @@ const backgroundStyle = computed(() => {
 </script>
 
 <template>
-  <div class="relative flex rounded-full bg-white shadow-sm">
+  <div class="relative flex rounded-full bg-white shadow-sm dark:bg-neutral-600">
     <div
       class="absolute top-0 h-full w-1/3 scale-95 rounded-full duration-200"
-      :class="hovered === null || options[hovered].value === model ? 'bg-primary-200' : 'bg-primary-100'"
+      :class="
+        hovered === null || options[hovered].value === model ? 'bg-primary-200 dark:bg-primary-500' : 'bg-primary-100 dark:bg-primary-700'
+      "
       :style="backgroundStyle"
     ></div>
     <template v-for="(option, index) in options" :key="option.value">

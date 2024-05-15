@@ -5,6 +5,7 @@ import Input from './Input.vue';
 import Button from './Button.vue';
 import { ref } from 'vue';
 import Avatar from './Avatar.vue';
+import SwitchTheme from './SwitchTheme.vue';
 
 const city = ref('');
 const router = useRouter();
@@ -24,7 +25,7 @@ const searchCity = () => {
 
 <template>
   <div
-    class="left-O container fixed left-1/2 top-2 z-50 -translate-x-1/2 rounded-full border bg-white/80 px-6 py-4 shadow-sm backdrop-blur-sm"
+    class="left-O container fixed left-1/2 top-2 z-50 -translate-x-1/2 rounded-full border bg-white/80 px-6 py-4 shadow-sm backdrop-blur-sm dark:border-neutral-700 dark:bg-neutral-800/80"
   >
     <div class="relative flex items-center justify-between">
       <div>
@@ -45,26 +46,29 @@ const searchCity = () => {
         hiddenLabel
         @keyup.enter="searchCity"
       />
-      <div v-if="!userStore.user">
-        <router-link
-          :to="{
-            name: '/auth/connexion',
-          }"
-          class="text-lg font-bold"
-        >
-          <Button color="blue"> Accéder à mon compte </Button>
-        </router-link>
-      </div>
-      <div v-else>
-        <router-link
-          :to="{
-            name: '/compte',
-          }"
-          class="flex items-center gap-2 rounded-xl border-2 border-transparent bg-neutral-50 px-4 py-2 text-lg font-bold duration-200 hover:-translate-y-2 hover:border-neutral-100 hover:shadow-sm"
-        >
-          <Avatar :username="userStore.user.username" />
-          {{ userStore.user.username }}
-        </router-link>
+      <div class="flex items-center gap-2">
+        <SwitchTheme />
+        <div v-if="!userStore.user">
+          <router-link
+            :to="{
+              name: '/auth/connexion',
+            }"
+            class="text-lg font-bold"
+          >
+            <Button color="blue"> Accéder à mon compte </Button>
+          </router-link>
+        </div>
+        <div v-else>
+          <router-link
+            :to="{
+              name: '/compte',
+            }"
+            class="text-md flex items-center gap-2 rounded-xl border-2 border-transparent bg-neutral-50 px-4 py-2 font-bold duration-200 hover:-translate-y-2 hover:border-neutral-100 hover:shadow-sm dark:bg-neutral-700 dark:hover:border-neutral-600"
+          >
+            <Avatar size="sm" :username="userStore.user.username" />
+            {{ userStore.user.username }}
+          </router-link>
+        </div>
       </div>
     </div>
   </div>

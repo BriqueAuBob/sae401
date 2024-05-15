@@ -17,7 +17,7 @@ const { data, loading } = useFetch<WeatherCity>(`/weather/` + props.city);
 </script>
 
 <template>
-  <article class="rounded-3xl border bg-blue-200 p-3">
+  <article class="rounded-3xl border bg-blue-200 p-3 dark:border-neutral-500 dark:bg-blue-600">
     <template v-if="!loading && data">
       <h1 class="text-lg">{{ city }}</h1>
       <div class="text-2xl font-bold">{{ getTemperature(data?.main?.temp) }}</div>
