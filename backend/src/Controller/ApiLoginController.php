@@ -59,6 +59,11 @@ class ApiLoginController extends AbstractController
     #[Route('/api/users/@me', name: 'api_me', methods: ['GET'])]
     public function me(): JsonResponse
     {
-        return $this->json($this->getUser());
+        $user = $this->getUser();
+        return $this->json([
+            'email' => $user->getUserIdentifier(),
+            'username' => $user->getUsername(),
+            'preferences' => $user->getPreferences()
+        ]);
     }
 }
