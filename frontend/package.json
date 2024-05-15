@@ -12,6 +12,7 @@
     "@headlessui/vue": "^1.7.22",
     "pinia": "^2.1.7",
     "pinia-shared-state": "^0.5.1",
+    "prettier-plugin-tailwindcss": "^0.5.14",
     "vue": "^3.4.21"
   },
   "devDependencies": {
