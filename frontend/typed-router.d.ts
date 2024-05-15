@@ -23,5 +23,6 @@ declare module 'vue-router/auto-routes' {
     '/auth/reset-password/': RouteRecordInfo<'/auth/reset-password/', '/auth/reset-password', Record<never, never>, Record<never, never>>,
     '/auth/reset-password/[token]': RouteRecordInfo<'/auth/reset-password/[token]', '/auth/reset-password/:token', { token: ParamValue<true> }, { token: ParamValue<false> }>,
     '/compte': RouteRecordInfo<'/compte', '/compte', Record<never, never>, Record<never, never>>,
+    '/meteo/[city]': RouteRecordInfo<'/meteo/[city]', '/meteo/:city', { city: ParamValue<true> }, { city: ParamValue<false> }>,
   }
 }
