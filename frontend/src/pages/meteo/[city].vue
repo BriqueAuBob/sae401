@@ -23,7 +23,7 @@ watch(
 <template>
   <Layout>
     <div class="container py-8 pt-24">
-      <LoadingIndicator v-if="loading" />
+      <LoadingIndicator v-if="loading" class="min-h-96" />
       <template v-else-if="error">Error: {{ error.message }}</template>
       <template v-else>
         <h1>{{ data.name }}</h1>

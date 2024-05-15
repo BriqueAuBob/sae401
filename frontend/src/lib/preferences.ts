@@ -1,9 +1,20 @@
-import TabSelector from '../components/preferences/TabSelector.vue';
+import Cities from '../components/preferences/Editors/Cities.vue';
+import TabSelector from '../components/preferences/Editors/TabSelector.vue';
 
-const PREFERENCES = {
+export interface Preference {
+  title: string;
+  description: string;
+  value: any;
+  options?: { value: any; label: string }[];
+  component?: any;
+}
+
+const PREFERENCES: {
+  [key: string]: Preference;
+} = {
   temp_unit: {
     title: 'Unité de température',
-    description: 'Unité de température utilisée pour afficher les températures',
+    description: "Choisissez l'unité dans laquelle les températures doivent être affichées.",
     value: 'celsius',
     options: [
       { value: 'celsius', label: 'Celsius' },
@@ -11,6 +22,12 @@ const PREFERENCES = {
       { value: 'kelvin', label: 'Kelvin' },
     ],
     component: TabSelector,
+  },
+  cities: {
+    title: 'Villes favorites',
+    description: 'Ajoutez ou supprimez des villes pour lesquelles vous souhaitez afficher les prévisions météorologiques.',
+    value: [],
+    component: Cities,
   },
 };
 

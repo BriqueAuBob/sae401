@@ -4,6 +4,7 @@ import useUserStore from '../stores/user';
 import Input from './Input.vue';
 import Button from './Button.vue';
 import { ref } from 'vue';
+import Avatar from './Avatar.vue';
 
 const city = ref('');
 const router = useRouter();
@@ -59,8 +60,9 @@ const searchCity = () => {
           :to="{
             name: '/compte',
           }"
-          class="text-lg font-bold"
+          class="flex items-center gap-2 rounded-xl border-2 border-transparent bg-neutral-50 px-4 py-2 text-lg font-bold duration-200 hover:-translate-y-2 hover:border-neutral-100 hover:shadow-sm"
         >
+          <Avatar :username="userStore.user.username" />
           {{ userStore.user.username }}
         </router-link>
       </div>

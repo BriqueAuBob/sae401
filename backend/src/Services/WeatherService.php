@@ -23,7 +23,7 @@ class WeatherService
     public function getWeatherFromCity(string $city)
     {
         return $this->cache->get($city, function (ItemInterface $item) use ($city) {
-            $item->expiresAfter(60 * 10);
+            $item->expiresAfter(60 * 60);
 
             $response = $this->httpClient->request(
                 'GET',

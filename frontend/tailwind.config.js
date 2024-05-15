@@ -7,6 +7,7 @@ export default {
       variants: ['hover'],
     },
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       container: {

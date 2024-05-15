@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, PropType, ref } from 'vue';
-import type Option from '../../types/option';
+import type Option from '../../../types/option';
 
 const model = defineModel<string>();
 

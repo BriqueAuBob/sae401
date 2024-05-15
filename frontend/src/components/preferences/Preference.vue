@@ -34,27 +34,29 @@ const handleModification = () => {
 </script>
 
 <template>
-  <div class="flex items-center justify-between">
+  <div class="flex flex-col items-start gap-4 p-4 lg:flex-row">
     <div>
       <div class="text-md font-semibold">
         {{ wrappedPreference?.title }}
       </div>
-      <p class="max-w-md text-sm">
+      <p class="max-w-xl text-sm">
         {{ wrappedPreference?.description }}
       </p>
     </div>
-    <component
-      v-if="wrappedPreference?.component"
-      :is="wrappedPreference?.component"
-      v-model="preference.pvalue"
-      v-bind="wrappedPreference"
-      @update:modelValue="handleModification"
-    />
-    <component
-      v-else-if="components[preference.ptype as keyof typeof components]"
-      :is="components[preference.ptype as keyof typeof components]"
-      v-model="preference.pvalue"
-      @blur="handleModification"
-    />
+    <div class="flex w-1/2 justify-end self-center">
+      <component
+        v-if="wrappedPreference?.component"
+        :is="wrappedPreference?.component"
+        v-model="preference.pvalue"
+        v-bind="wrappedPreference"
+        @update:modelValue="handleModification"
+      />
+      <component
+        v-else-if="components[preference.ptype as keyof typeof components]"
+        :is="components[preference.ptype as keyof typeof components]"
+        v-model="preference.pvalue"
+        @blur="handleModification"
+      />
+    </div>
   </div>
 </template>
