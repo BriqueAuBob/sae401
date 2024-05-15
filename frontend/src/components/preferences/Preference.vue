@@ -44,7 +44,7 @@ const handleModification = () => {
         {{ wrappedPreference?.description }}
       </p>
     </div>
-    <div class="flex w-1/2 justify-end self-center">
+    <div class="flex w-full self-center lg:w-1/2 lg:justify-end">
       <component
         v-if="wrappedPreference?.component"
         :is="wrappedPreference?.component"
