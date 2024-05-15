@@ -89,6 +89,8 @@
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfony/twig-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfonycasts/reset-password-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/twig/twig" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfony/http-client" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfony/http-client-contracts" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -142,10 +142,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $preferences = $this->preferences;
         $preferencesCasted = [];
-        foreach($preferences as $value) {
+        foreach ($preferences as $value) {
             $preferencesCasted[] = [
+                'id' => $value->getId(),
                 'pkey' => $value->getPkey(),
-                "pvalue" => $value->getCastedValue()
+                "pvalue" => $value->getCastedValue(),
+                'ptype' => $value->getPtype()
             ];
         }
         return $preferencesCasted;
