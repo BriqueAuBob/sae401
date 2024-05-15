@@ -10,10 +10,12 @@ const userStore = useUserStore();
 <template>
   <Layout>
     <div class="container py-8 pt-24">
-      <h1>Compte</h1>
-      <p>Vous êtes connecté en tant que {{ userStore.user?.email }}</p>
+      <h1 class="text-xl font-semibold">Compte</h1>
+      <h2 class="mb-4 text-sm font-medium">Vous êtes connecté en tant que {{ userStore.user?.username }} ({{ userStore.user?.email }})</h2>
       <PreferencesList />
-      <Button color="red" @click="userStore.logout">Déconnexion</Button>
+      <div class="flex justify-center">
+        <Button class="mx-auto mt-4" color="red" @click="userStore.logout">Déconnexion</Button>
+      </div>
     </div>
   </Layout>
 </template>
