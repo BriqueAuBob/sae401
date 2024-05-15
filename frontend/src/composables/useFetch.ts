@@ -4,7 +4,7 @@ import { fetchFromApi, FetchOptions } from "../lib/fetch";
 export const useFetch = <T>(endpoint: string, options?: FetchOptions) => {
   const data = ref<T | null>(null);
   const error = ref<any>(null);
-  const loading = ref(false);
+  const loading = ref(true);
 
   const getData = async () => {
     try {
