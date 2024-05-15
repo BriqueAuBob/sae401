@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -34,6 +36,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 50)]
     private ?string $username = null;
+
+    /**
+     * @var Collection<int, Preference>
+     */
+    #[ORM\OneToMany(targetEntity: Preference::class, mappedBy: 'user_id')]
+    private Collection $preferences;
+
+    public function __construct()
+    {
+        $this->preferences = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -118,6 +131,44 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUsername(string $username): static
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Preference>
+     */
+    public function getPreferences(): array
+    {
+        $preferences = $this->preferences;
+        $preferencesCasted = [];
+        foreach($preferences as $value) {
+            $preferencesCasted[] = [
+                'pkey' => $value->getPkey(),
+                "pvalue" => $value->getCastedValue()
+            ];
+        }
+        return $preferencesCasted;
+    }
+
+    public function addPreference(Preference $preference): static
+    {
+        if (!$this->preferences->contains($preference)) {
+            $this->preferences->add($preference);
+            $preference->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removePreference(Preference $preference): static
+    {
+        if ($this->preferences->removeElement($preference)) {
+            // set the owning side to null (unless already changed)
+            if ($preference->getUserId() === $this) {
+                $preference->setUserId(null);
+            }
+        }
 
         return $this;
     }
