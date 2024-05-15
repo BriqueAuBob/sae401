@@ -22,7 +22,7 @@ const searchCity = () => {
 </script>
 
 <template>
-  <div class="left-O container fixed left-1/2 top-2 -translate-x-1/2 rounded-full border bg-white/80 px-6 py-4 shadow-sm">
+  <div class="left-O container fixed left-1/2 top-2 -translate-x-1/2 rounded-full border bg-white/80 px-6 py-4 shadow-sm backdrop-blur-sm">
     <div class="relative flex items-center justify-between">
       <div>
         <router-link
