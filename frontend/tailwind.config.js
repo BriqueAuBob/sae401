@@ -1,3 +1,5 @@
+import defaultConfig from 'tailwindcss/defaultConfig';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx,vue}'],
@@ -10,6 +12,9 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['DM Sans', ...defaultConfig.theme.fontFamily.sans],
+      },
       container: {
         center: true,
         padding: '1rem',

@@ -24,12 +24,12 @@ const deleteCity = (city: string) => {
 
 <template>
   <div class="w-full p-4">
-    <div class="text-md mb-1 font-medium">Ajout d'une ville ({{ model.length }} / {{ MAX_CITIES }})</div>
+    <div class="text-md mb-1 font-medium">Ajout d'une ville ({{ model.length }}/{{ MAX_CITIES }})</div>
     <TransitionGroup name="fade">
-      <div class="mb-3 grid grid-cols-3 gap-1" v-if="model.length > 0">
+      <div class="mb-3 grid grid-cols-2 gap-1" v-if="model.length > 0">
         <TransitionGroup name="slide-fade">
           <div v-for="city in model" :key="city" class="group relative">
-            <WeatherWidget :city="city" />
+            <WeatherWidget :city="city" class="h-full" />
             <Button
               class="absolute right-1.5 top-1.5 flex h-8 w-8 items-center justify-center opacity-0 duration-200 group-hover:opacity-100"
               style="padding: 0"

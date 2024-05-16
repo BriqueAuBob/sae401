@@ -17,15 +17,21 @@ final class UserListener
         [
             'pkey' => 'cities',
             'pvalue' => ['Paris', 'Troyes', 'Marseille'],
+        ],
+        [
+            'pkey' => 'display_min_max',
+            'pvalue' => true
         ]
     ];
 
-    public function __construct(private EntityManagerInterface $entityManager) {}
+    public function __construct(private EntityManagerInterface $entityManager)
+    {
+    }
 
     #[AsEventListener(event: UserCreateEvent::NAME)]
     public function onUserCreate(UserCreateEvent $event): void
     {
-        foreach($this->defaultPreferences as $preference) {
+        foreach ($this->defaultPreferences as $preference) {
             $p = new Preference();
             $p->setUser($event->getUser());
             $p->setPkey($preference['pkey']);
