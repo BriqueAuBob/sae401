@@ -29,17 +29,20 @@ export default defineStore('user', () => {
     initStore();
   };
 
-  const login = (username: string, password: string) => {
-    fetchFromApi<{ token: string }>('/auth/login', {
-      method: 'POST',
-      body: {
-        username,
-        password,
-      },
-    }).then((data) => {
+  const login = async (username: string, password: string) => {
+    try {
+      const data = await fetchFromApi<{ token: string }>('/auth/login', {
+        method: 'POST',
+        body: {
+          username,
+          password,
+        },
+      });
       handleAuthentification(data.token);
       window.location.href = '/';
-    });
+    } catch (err: any) {
+      throw err;
+    }
   };
 
   const register = (username: string, email: string, password: string) => {
