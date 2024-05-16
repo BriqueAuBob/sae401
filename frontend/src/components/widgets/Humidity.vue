@@ -14,7 +14,7 @@ const getPreference = usePreference();
 </script>
 
 <template>
-  <Card as="article" v-if="getPreference(preferenceName)">
+  <Card v-if="getPreference(preferenceName)">
     <div class="text-lg font-medium">Humidité</div>
     <span class="text-3xl font-bold">{{ humidity }}%</span>
   </Card>
