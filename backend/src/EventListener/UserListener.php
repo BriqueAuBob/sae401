@@ -9,7 +9,7 @@ use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
 final class UserListener
 {
-    private $defaultPreferences = [
+    const DEFAULT_PREFERENCES = [
         [
             'pkey' => 'temp_unit',
             'pvalue' => 'celsius',
@@ -17,15 +17,21 @@ final class UserListener
         [
             'pkey' => 'cities',
             'pvalue' => ['Paris', 'Troyes', 'Marseille'],
+        ],
+        [
+            'pkey' => 'display_min_max',
+            'pvalue' => true
         ]
     ];
 
-    public function __construct(private EntityManagerInterface $entityManager) {}
+    public function __construct(private EntityManagerInterface $entityManager)
+    {
+    }
 
     #[AsEventListener(event: UserCreateEvent::NAME)]
     public function onUserCreate(UserCreateEvent $event): void
     {
-        foreach($this->defaultPreferences as $preference) {
+        foreach (UserListener::DEFAULT_PREFERENCES as $preference) {
             $p = new Preference();
             $p->setUser($event->getUser());
             $p->setPkey($preference['pkey']);
