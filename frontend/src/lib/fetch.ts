@@ -28,6 +28,7 @@ const fetchFromApi = async <T>(endpoint: string, options: FetchOptions = {}): Pr
   } catch (err: any) {
     if (err.code === 401) {
       localStorage.removeItem('token');
+      window.location.reload();
     }
     throw err;
   }
