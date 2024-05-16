@@ -9,7 +9,7 @@ const authStore = useAuthStore();
 
 <template>
   <Layout>
-    <header class="from-primary-200 bg-gradient-to-b pb-16 pt-36 text-center">
+    <header class="from-primary-200 dark:from-primary-700 bg-gradient-to-b pb-16 pt-36 text-center">
       <h1 class="text-4xl font-bold">La météo à portée de clic</h1>
       <h2 class="mx-auto mt-2 max-w-xl text-balance text-lg">
         Des prévisions météo précises et actualisées pour planifier votre journée en toute confiance, où que vous soyez
