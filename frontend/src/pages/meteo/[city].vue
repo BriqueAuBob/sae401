@@ -6,11 +6,6 @@ import { ref, watch } from 'vue';
 import Layout from '../../layouts/default.vue';
 import WeatherWidget from '../../components/WeatherWidget.vue';
 import WidgetWind from '../../components/widgets/Wind.vue';
-import usePreference from '../../composables/usePreference';
-import useTemperature from '../../composables/useTemperature';
-import Card from '../../components/Card.vue';
-import ArrowUp from '../../assets/icons/arrow-up.svg';
-import ArrowDown from '../../assets/icons/arrow-down.svg';
 import WidgetSunPhases from '../../components/widgets/SunPhases.vue';
 import WidgetHumidity from '../../components/widgets/Humidity.vue';
 import WidgetPressure from '../../components/widgets/Pressure.vue';
@@ -29,12 +24,6 @@ watch(
 );
 
 const otherCities = ['Paris', 'London', 'New York', 'Tokyo'];
-const getPreference = usePreference();
-const { getTemperature } = useTemperature();
-
-const getWeatherStateTitle = (state: any) => {
-  return state.description.charAt(0).toUpperCase() + state.description.slice(1);
-};
 </script>
 
 <template>
@@ -46,26 +35,7 @@ const getWeatherStateTitle = (state: any) => {
         <template v-else-if="error">Error: {{ error.message }}</template>
         <div class="grid gap-4 lg:grid-cols-4" v-else>
           <div class="col-span-3">
-            <Card class="flex flex-col justify-center text-center">
-              <h1 class="text-2xl font-medium">{{ data?.name || city }}</h1>
-              <h2 class="text-4xl font-black">{{ getTemperature(data.main.temp) }}</h2>
-              <div class="flex items-center justify-center gap-4">
-                <div v-for="state of data?.weather" class="flex items-center gap-2">
-                  <img :src="`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`" :alt="data.weather[0].description" />
-                  <div>{{ getWeatherStateTitle(state) }}</div>
-                </div>
-              </div>
-              <div class="flex justify-center gap-2" v-if="getPreference('display_min_max')?.pvalue">
-                <div class="flex items-center gap-0.5">
-                  <ArrowUp class="h-3.5 w-3.5" />
-                  <div class="text-xs">{{ getTemperature(data?.main?.temp_max) }}</div>
-                </div>
-                <div class="flex items-center gap-0.5">
-                  <ArrowDown class="h-3.5 w-3.5" />
-                  <div class="text-xs">{{ getTemperature(data?.main?.temp_min) }}</div>
-                </div>
-              </div>
-            </Card>
+            <WeatherWidget size="xl" class="p-6 text-center" childClasses="flex flex-col items-center" :city="city" />
             <div class="mt-4 grid grid-flow-row-dense grid-cols-4 gap-2">
               <WidgetWind :wind="data?.wind" />
               <WidgetSunPhases :sys="data?.sys" />
