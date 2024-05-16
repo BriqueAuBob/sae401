@@ -77,6 +77,16 @@ const PREFERENCES: {
     description: "Affichez le taux d'humidité dans les prévisions météorologiques.",
     value: true,
   },
+  display_clouds: {
+    title: 'Afficher les nuages',
+    description: 'Affichez le pourcentage de couverture nuageuse dans les prévisions météorologiques.',
+    value: true,
+  },
+  display_pressure: {
+    title: 'Afficher la pression',
+    description: 'Affichez la pression atmosphérique dans les prévisions météorologiques.',
+    value: true,
+  },
 };
 
 export default PREFERENCES;

@@ -18,7 +18,7 @@ const { getWindSpeed, getWindDirection } = useWind();
 </script>
 
 <template>
-  <Card v-if="getPreference(preferenceName)">
+  <Card v-if="getPreference(preferenceName)?.pvalue">
     <h2 class="text-lg font-medium">Vent</h2>
     <span class="text-3xl font-bold">{{ getWindSpeed(wind.speed) }}</span>
     <div class="mt-4 flex items-center justify-end gap-2">

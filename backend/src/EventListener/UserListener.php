@@ -37,6 +37,14 @@ final class UserListener
         [
             'pkey' => 'display_humidity',
             'pvalue' => true
+        ],
+        [
+            'pkey' => 'display_clouds',
+            'pvalue' => true
+        ],
+        [
+            'pkey' => 'display_pressure',
+            'pvalue' => true
         ]
     ];
 

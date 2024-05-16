@@ -13,6 +13,8 @@ import ArrowUp from '../../assets/icons/arrow-up.svg';
 import ArrowDown from '../../assets/icons/arrow-down.svg';
 import WidgetSunPhases from '../../components/widgets/SunPhases.vue';
 import WidgetHumidity from '../../components/widgets/Humidity.vue';
+import WidgetPressure from '../../components/widgets/Pressure.vue';
+import WidgetClouds from '../../components/widgets/Clouds.vue';
 
 const route = useRoute();
 const city = ref<string>(route.params.city as string);
@@ -68,6 +70,8 @@ const getWeatherStateTitle = (state: any) => {
               <WidgetWind :wind="data?.wind" />
               <WidgetSunPhases :sys="data?.sys" />
               <WidgetHumidity :humidity="data?.main?.humidity" />
+              <WidgetPressure :pressure="data?.main?.pressure" />
+              <WidgetClouds :clouds="data?.clouds" />
             </div>
           </div>
           <aside class="opacity-50 duration-200 hover:opacity-100">

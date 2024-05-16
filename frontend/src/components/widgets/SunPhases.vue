@@ -23,7 +23,7 @@ const getSunrise = (timestamp: number) => {
 </script>
 
 <template>
-  <Card as="article" v-if="getPreference(preferenceName)">
+  <Card v-if="getPreference(preferenceName)?.pvalue">
     <div class="text-lg font-medium">Couché</div>
     <span class="text-3xl font-bold">{{ getSunrise(sys.sunset) }}</span>
 
