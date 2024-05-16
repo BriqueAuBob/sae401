@@ -15,12 +15,13 @@ final class ExceptionListener
     public function onKernelException(ExceptionEvent $event): void
     {
         $exception = $event->getThrowable();
-        $request   = $event->getRequest();
+        $request = $event->getRequest();
 
-        if ('application/json' === $request->headers->get('Content-Type'))
-        {
+        if ('application/json' === $request->headers->get('Content-Type')) {
+            $exceptionsArray = preg_split("/\r\n|\n|\r/", $exception->getMessage());
             $response = new JsonResponse([
                 'message' => $exception->getMessage(),
+                'violations' => $exceptionsArray,
                 'status' => 'error',
             ]);
 

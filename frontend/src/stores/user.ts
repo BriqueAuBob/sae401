@@ -45,18 +45,17 @@ export default defineStore('user', () => {
     }
   };
 
-  const register = (username: string, email: string, password: string) => {
-    fetchFromApi<{ token: string }>('/auth/register', {
-      method: 'POST',
-      body: {
-        username,
-        email,
-        password,
-      },
-    }).then((data) => {
+  const register = async (form: { username: string; email: string; password: string; password_confirm: string }) => {
+    try {
+      const data = await fetchFromApi<{ token: string }>('/auth/register', {
+        method: 'POST',
+        body: form,
+      });
       handleAuthentification(data.token);
       window.location.href = '/';
-    });
+    } catch (err) {
+      throw err;
+    }
   };
 
   const logout = () => {
