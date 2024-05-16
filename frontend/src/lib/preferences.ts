@@ -28,7 +28,7 @@ const PREFERENCES: {
   cities: {
     title: 'Villes favorites',
     description: 'Ajoutez ou supprimez des villes pour lesquelles vous souhaitez afficher les prévisions météorologiques.',
-    value: [],
+    value: ['Troyes', 'Paris', 'Lyon', 'Marseille', 'Bordeaux', 'Lille'],
     component: Cities,
   },
   theme: {

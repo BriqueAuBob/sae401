@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { onMounted, ref } from 'vue';
 import { fetchFromApi } from '../lib/fetch';
 import type { Preference } from '../types/preference';
+import preferences, { Preference as PreferenceType } from '../lib/preferences';
 
 type User = {
   username: string;
@@ -70,7 +71,15 @@ export default defineStore('user', () => {
   };
 
   const findPreference = (key: string) => {
-    return user.value?.preferences?.find((p) => p.pkey === key);
+    const defaultPreference = preferences[key as keyof typeof preferences] as PreferenceType;
+    console.log(key, defaultPreference);
+    return user.value
+      ? user.value?.preferences?.find((p) => p.pkey === key)
+      : {
+          id: 0,
+          pkey: key,
+          pvalue: defaultPreference.value,
+        };
   };
 
   return {
