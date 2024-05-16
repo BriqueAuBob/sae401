@@ -3,6 +3,8 @@ import { onMounted, ref } from 'vue';
 import { fetchFromApi } from '../lib/fetch';
 import type { Preference } from '../types/preference';
 import preferences, { Preference as PreferenceType } from '../lib/preferences';
+import { toast } from 'vue-sonner';
+import { useRouter } from 'vue-router';
 
 type User = {
   username: string;
@@ -13,11 +15,15 @@ type User = {
 export default defineStore('user', () => {
   const user = ref<User | null>(null);
   const token = ref(localStorage.getItem('token'));
+  const router = useRouter();
 
   const initStore = async () => {
     if (token.value) {
       const response = await fetchFromApi<User>('users/@me');
       user.value = response;
+      toast('Bonjour ' + user.value.username + ' !', {
+        duration: 2000,
+      });
     }
   };
 
@@ -39,7 +45,7 @@ export default defineStore('user', () => {
         },
       });
       handleAuthentification(data.token);
-      window.location.href = '/';
+      router.push('/');
     } catch (err: any) {
       throw err;
     }
@@ -52,7 +58,7 @@ export default defineStore('user', () => {
         body: form,
       });
       handleAuthentification(data.token);
-      window.location.href = '/';
+      router.push('/');
     } catch (err) {
       throw err;
     }
@@ -62,7 +68,7 @@ export default defineStore('user', () => {
     token.value = null;
     user.value = null;
     localStorage.removeItem('token');
-    window.location.href = '/';
+    router.push('/');
   };
 
   const updatePreference = async (preference: Preference) => {
