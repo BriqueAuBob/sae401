@@ -9,7 +9,7 @@ use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 
 final class UserListener
 {
-    private $defaultPreferences = [
+    const DEFAULT_PREFERENCES = [
         [
             'pkey' => 'temp_unit',
             'pvalue' => 'celsius',
@@ -31,7 +31,7 @@ final class UserListener
     #[AsEventListener(event: UserCreateEvent::NAME)]
     public function onUserCreate(UserCreateEvent $event): void
     {
-        foreach ($this->defaultPreferences as $preference) {
+        foreach (UserListener::DEFAULT_PREFERENCES as $preference) {
             $p = new Preference();
             $p->setUser($event->getUser());
             $p->setPkey($preference['pkey']);
