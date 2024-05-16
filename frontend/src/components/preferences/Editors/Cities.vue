@@ -29,7 +29,7 @@ const deleteCity = (city: string) => {
       <div class="mb-3 grid grid-cols-2 gap-1" v-if="model.length > 0">
         <TransitionGroup name="slide-fade">
           <div v-for="city in model" :key="city" class="group relative">
-            <WeatherWidget :city="city" class="h-full" />
+            <WeatherWidget :city="city" class="h-full !p-3" />
             <Button
               class="absolute right-1.5 top-1.5 flex h-8 w-8 items-center justify-center opacity-0 duration-200 group-hover:opacity-100"
               style="padding: 0"

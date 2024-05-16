@@ -2,6 +2,7 @@
 import { PropType } from 'vue';
 import type { Preference } from '../../types/preference';
 import Input from '../Input.vue';
+import Toggle from '../Toggle.vue';
 import { fetchFromApi } from '../../lib/fetch';
 import useUserStore from '../../stores/user';
 import preferences from '../../lib/preferences';
@@ -15,13 +16,6 @@ const props = defineProps({
 });
 const wrappedPreference = preferences[props.preference.pkey as keyof typeof preferences];
 
-const components = {
-  JSON: Input,
-  NUMBER: Input,
-  STRING: Input,
-  BOOLEAN: Input,
-};
-
 const handleModification = () => {
   if (!props.preference.id) return;
   fetchFromApi(`/users/@me/preferences/${props.preference.id}`, {
@@ -31,6 +25,27 @@ const handleModification = () => {
     },
   });
   userStore.updatePreference(props.preference);
+};
+
+const components = {
+  JSON: {
+    component: Input,
+    events: {},
+  },
+  NUMBER: {
+    component: Input,
+    events: {},
+  },
+  STRING: {
+    component: Input,
+    events: {},
+  },
+  BOOLEAN: {
+    component: Toggle,
+    events: {
+      'update:modelValue': handleModification,
+    },
+  },
 };
 </script>
 
@@ -51,14 +66,14 @@ const handleModification = () => {
         v-model="preference.pvalue"
         @update:modelValue="handleModification"
         v-bind="wrappedPreference"
-        v-on="wrappedPreference.events || {}"
+        v-on="wrappedPreference?.events || {}"
       />
       <component
         v-else-if="components[preference.ptype as keyof typeof components]"
-        :is="components[preference.ptype as keyof typeof components]"
+        :is="components[preference.ptype as keyof typeof components].component"
         v-model="preference.pvalue"
         @blur="handleModification"
-        v-on="wrappedPreference.events || {}"
+        v-on="wrappedPreference?.events || components[preference.ptype as keyof typeof components].events || {}"
       />
     </div>
   </div>

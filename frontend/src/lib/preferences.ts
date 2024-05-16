@@ -28,7 +28,7 @@ const PREFERENCES: {
   cities: {
     title: 'Villes favorites',
     description: 'Ajoutez ou supprimez des villes pour lesquelles vous souhaitez afficher les prévisions météorologiques.',
-    value: [],
+    value: ['Troyes', 'Paris', 'Lyon', 'Marseille', 'Bordeaux', 'Lille'],
     component: Cities,
   },
   theme: {
@@ -45,6 +45,11 @@ const PREFERENCES: {
         console.log('value', value);
       },
     },
+  },
+  display_min_max: {
+    title: 'Afficher les températures minimales et maximales',
+    description: 'Affichez les températures minimales et maximales dans les prévisions météorologiques.',
+    value: true,
   },
 };
 

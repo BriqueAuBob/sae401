@@ -27,8 +27,8 @@ security:
       stateless: true
       jwt: ~
 
-    #main:
-     # lazy: true
+      #main:
+      # lazy: true
       #provider: app_user_provider
       #
       #json_login:
@@ -44,7 +44,8 @@ security:
   # Note: Only the *first* access control that matches will be used
   access_control:
     - { path: ^/api/auth, roles: PUBLIC_ACCESS }
-    - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+    - { path: ^/api/users/@me, roles: IS_AUTHENTICATED_FULLY }
+    - { path: ^/api, roles: PUBLIC_ACCESS }
     # - { path: ^/admin, roles: ROLE_ADMIN }
     # - { path: ^/profile, roles: ROLE_USER }
 
