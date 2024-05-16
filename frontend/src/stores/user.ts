@@ -66,12 +66,17 @@ export default defineStore("user", () => {
     prefStore.pvalue = preference.pvalue;
   }
 
+  const findPreference = (key: string) => {
+  return user.value?.preferences?.find(p => p.pkey === key);
+  }
+
   return {
     user,
     token,
     login,
     register,
     logout,
-    updatePreference
+    updatePreference,
+    findPreference
   };
 });
