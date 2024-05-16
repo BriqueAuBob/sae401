@@ -67,6 +67,11 @@ const PREFERENCES: {
     description: 'Affichez la vitesse et la direction du vent dans les prévisions météorologiques.',
     value: true,
   },
+  display_sun_phases: {
+    title: "Afficher l'heure de lever et de coucher du soleil",
+    description: "Affichez l'heure de lever et de coucher du soleil dans les prévisions météorologiques.",
+    value: true,
+  },
 };
 
 export default PREFERENCES;
