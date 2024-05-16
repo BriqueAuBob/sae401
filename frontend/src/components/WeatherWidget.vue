@@ -32,7 +32,7 @@ const getWeatherStateTitle = (state: any) => {
     <template v-if="!loading && weather">
       <h1 class="text-sm">{{ weather?.name }}</h1>
       <div class="text-2xl font-bold">{{ getTemperature(weather?.main?.temp) }}</div>
-      <div class="flex flex-wrap">
+      <div class="flex flex-wrap gap-2">
         <div class="flex items-center gap-1" v-for="state of weather?.weather">
           <img class="h-8 w-8" :src="'https://openweathermap.org/img/wn/' + state.icon + '.png'" alt="weather icon" />
           <div class="text-sm">{{ getWeatherStateTitle(state) }}</div>

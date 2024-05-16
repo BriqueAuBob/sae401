@@ -21,6 +21,14 @@ final class UserListener
         [
             'pkey' => 'display_min_max',
             'pvalue' => true
+        ],
+        [
+            'pkey' => 'wind_speed_unit',
+            'pvalue' => 'kmph'
+        ],
+        [
+            'pkey' => 'display_wind',
+            'pvalue' => true
         ]
     ];
 
