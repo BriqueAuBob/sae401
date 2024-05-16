@@ -25,7 +25,10 @@ const fetchFromApi = async <T>(endpoint: string, options: FetchOptions = {}): Pr
     }
     const data = await response.json();
     return data;
-  } catch (err) {
+  } catch (err: any) {
+    if (err.code === 401) {
+      localStorage.removeItem('token');
+    }
     throw err;
   }
 };
