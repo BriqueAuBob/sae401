@@ -10,6 +10,7 @@ import Cloud from '../assets/widgets/cloud.png';
 import Cloud2 from '../assets/widgets/cloud2.webp';
 import Clouds from '../assets/widgets/clouds.png';
 import Sun from '../assets/widgets/sun.png';
+import Rain from '../assets/widgets/rain.png';
 import { computed } from 'vue';
 
 const props = defineProps({
@@ -34,6 +35,10 @@ const isCloudy = computed(() => {
 
 const isSunny = computed(() => {
   return weather?.value?.weather?.find((state: any) => state.main === 'Clear');
+});
+
+const isRainy = computed(() => {
+  return weather?.value?.weather?.find((state: any) => state.main === 'Rain');
 });
 </script>
 
@@ -68,9 +73,10 @@ const isSunny = computed(() => {
         </div>
       </div>
 
-      <img v-if="isCloudy?.description === 'couvert'" :src="Cloud" alt="" class="absolute -right-4 -top-4 z-20 w-32" />
-      <img v-else-if="isCloudy" :src="Cloud2" alt="" class="absolute -right-4 -top-4 z-20 w-32" />
-      <img v-else-if="isSunny" :src="Sun" alt="" class="absolute -right-4 -top-4 z-20 w-32" />
+      <img v-if="isCloudy?.description === 'couvert'" :src="Cloud" alt="" class="pointer-events-none absolute -right-4 -top-4 z-20 w-32" />
+      <img v-else-if="isCloudy" :src="Cloud2" alt="" class="pointer-events-none absolute -right-4 -top-4 z-20 w-32" />
+      <img v-else-if="isSunny" :src="Sun" alt="" class="pointer-events-none absolute -right-4 -top-4 z-20 w-32" />
+      <img v-else-if="isRainy" :src="Rain" alt="" class="pointer-events-none absolute right-0 top-0 z-20 h-full w-full" />
     </template>
     <LoadingIndicator size="h-6 w-6" noText v-else />
   </article>
