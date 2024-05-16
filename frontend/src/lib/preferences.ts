@@ -46,6 +46,11 @@ const PREFERENCES: {
       },
     },
   },
+  display_min_max: {
+    title: 'Afficher les températures minimales et maximales',
+    description: 'Affichez les températures minimales et maximales dans les prévisions météorologiques.',
+    value: true,
+  },
 };
 
 export default PREFERENCES;

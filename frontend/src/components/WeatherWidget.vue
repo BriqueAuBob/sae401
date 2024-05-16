@@ -5,7 +5,7 @@ import LoadingIndicator from './LoadingIndicator.vue';
 import type { WeatherCity } from '../types/openweather';
 import ArrowUp from '../assets/icons/arrow-up.svg';
 import ArrowDown from '../assets/icons/arrow-down.svg';
-import { computed } from 'vue';
+import usePreference from '../composables/usePreference';
 
 const props = defineProps({
   city: {
@@ -15,16 +15,13 @@ const props = defineProps({
 });
 
 const { getTemperature } = useTemperature();
+const getPreference = usePreference();
 
 const { data: weather, loading } = useFetch<WeatherCity>(`/weather/` + props.city);
 
 const getWeatherStateTitle = (state: any) => {
   return state.description.charAt(0).toUpperCase() + state.description.slice(1);
 };
-
-const isRaining = computed(() => {
-  return weather?.value?.weather?.some((state) => state.main === 'Rain');
-});
 </script>
 
 <template>
@@ -41,7 +38,7 @@ const isRaining = computed(() => {
           <div class="text-sm">{{ getWeatherStateTitle(state) }}</div>
         </div>
       </div>
-      <div class="flex gap-2">
+      <div class="flex gap-2" v-if="getPreference('display_min_max')?.pvalue">
         <div class="flex items-center gap-0.5">
           <ArrowUp class="h-3 w-3" />
           <div class="text-xs">{{ getTemperature(weather?.main?.temp_max) }}</div>
