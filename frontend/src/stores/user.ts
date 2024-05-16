@@ -59,6 +59,7 @@ export default defineStore('user', () => {
     token.value = null;
     user.value = null;
     localStorage.removeItem('token');
+    window.location.href = '/';
   };
 
   const updatePreference = async (preference: Preference) => {

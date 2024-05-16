@@ -1,14 +1,11 @@
-const BASE_URL = "http://symfony.mmi-troyes.fr:8313/api/";
+const BASE_URL = 'http://symfony.mmi-troyes.fr:8313/api/';
 
-type FetchOptions = Omit<RequestInit, "body"> & {
+type FetchOptions = Omit<RequestInit, 'body'> & {
   body?: string | Record<string, any>;
 };
 
-const fetchFromApi = async <T>(
-  endpoint: string,
-  options: FetchOptions = {}
-): Promise<T> => {
-  if (endpoint.startsWith("/")) {
+const fetchFromApi = async <T>(endpoint: string, options: FetchOptions = {}): Promise<T> => {
+  if (endpoint.startsWith('/')) {
     endpoint = endpoint.slice(1);
   }
 
@@ -17,15 +14,12 @@ const fetchFromApi = async <T>(
   }
 
   options.headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
+    'Content-Type': 'application/json',
+    'Authorization': localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : '',
   };
 
   try {
-    const response = await fetch(
-      `${BASE_URL}${endpoint}`,
-      options as RequestInit
-    );
+    const response = await fetch(`${BASE_URL}${endpoint}`, options as RequestInit);
     if (!response.ok) {
       throw await response.json();
     }

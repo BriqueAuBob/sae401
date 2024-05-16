@@ -3,8 +3,14 @@ import Button from '../components/Button.vue';
 import Layout from '../layouts/default.vue';
 import WeatherWidget from '../components/WeatherWidget.vue';
 import useAuthStore from '../stores/user';
+import usePreference from '../composables/usePreference';
+import { computed } from 'vue';
 
 const authStore = useAuthStore();
+const getPreference = usePreference();
+
+const citiesPreference = computed(() => getPreference('cities')?.pvalue);
+const defaultCities = ['Troyes', 'Paris', 'Lyon', 'Marseille', 'Lille', 'Bordeaux'];
 </script>
 
 <template>
@@ -16,12 +22,35 @@ const authStore = useAuthStore();
       </h2>
       <Button class="mt-4" v-if="!authStore.user">Connexion</Button>
     </header>
-    <section class="container py-8">
+    <section class="container py-8" v-if="authStore.user && citiesPreference?.length > 0">
+      <h1 class="mb-4 text-center text-xl font-bold">Météo des villes favorites</h1>
+      <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+        <RouterLink
+          v-for="city of citiesPreference"
+          :key="city"
+          :to="{
+            name: '/meteo/[city]',
+            params: { city },
+          }"
+          class="cursor-pointer duration-200 hover:-translate-y-1 hover:brightness-105"
+        >
+          <WeatherWidget :city="city" />
+        </RouterLink>
+      </div>
+    </section>
+    <section class="container py-8" v-else>
       <h1 class="mb-4 text-center text-xl font-bold">Météo des grandes villes</h1>
       <div class="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
-        <WeatherWidget city="paris" />
-        <WeatherWidget city="lyon" />
-        <WeatherWidget city="marseille" />
+        <RouterLink
+          v-for="city of defaultCities"
+          :key="city"
+          :to="{
+            name: '/meteo/[city]',
+            params: { city },
+          }"
+        >
+          <WeatherWidget city="Troyes" />
+        </RouterLink>
       </div>
     </section>
   </Layout>

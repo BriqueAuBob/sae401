@@ -26,7 +26,7 @@ const getWeatherStateTitle = (state: any) => {
 
 <template>
   <article
-    class="border-primary-100 shadow-primary-200 dark:to-primary-800 dark:from-primary-600 dark:shadow-primary-800 from-primary-200 to-primary-400 dark:border-primary-800 relative rounded-3xl border-2 bg-gradient-to-b p-3 shadow-md"
+    class="border-primary-100 shadow-primary-200 dark:to-primary-800 dark:from-primary-600 dark:shadow-primary-800 from-primary-200 to-primary-400 dark:border-primary-800 relative rounded-3xl border-2 bg-gradient-to-b p-4 shadow-md"
     ref="weatherWidget"
   >
     <template v-if="!loading && weather">
