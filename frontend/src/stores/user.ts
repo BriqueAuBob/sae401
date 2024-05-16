@@ -3,6 +3,8 @@ import { onMounted, ref } from 'vue';
 import { fetchFromApi } from '../lib/fetch';
 import type { Preference } from '../types/preference';
 import preferences, { Preference as PreferenceType } from '../lib/preferences';
+import { toast } from 'vue-sonner';
+import { useRouter } from 'vue-router';
 
 type User = {
   username: string;
@@ -13,11 +15,15 @@ type User = {
 export default defineStore('user', () => {
   const user = ref<User | null>(null);
   const token = ref(localStorage.getItem('token'));
+  const router = useRouter();
 
   const initStore = async () => {
     if (token.value) {
       const response = await fetchFromApi<User>('users/@me');
       user.value = response;
+      toast('Bonjour ' + user.value.username + ' !', {
+        duration: 2000,
+      });
     }
   };
 
@@ -29,38 +35,40 @@ export default defineStore('user', () => {
     initStore();
   };
 
-  const login = (username: string, password: string) => {
-    fetchFromApi<{ token: string }>('/auth/login', {
-      method: 'POST',
-      body: {
-        username,
-        password,
-      },
-    }).then((data) => {
+  const login = async (username: string, password: string) => {
+    try {
+      const data = await fetchFromApi<{ token: string }>('/auth/login', {
+        method: 'POST',
+        body: {
+          username,
+          password,
+        },
+      });
       handleAuthentification(data.token);
-      window.location.href = '/';
-    });
+      router.push('/');
+    } catch (err: any) {
+      throw err;
+    }
   };
 
-  const register = (username: string, email: string, password: string) => {
-    fetchFromApi<{ token: string }>('/auth/register', {
-      method: 'POST',
-      body: {
-        username,
-        email,
-        password,
-      },
-    }).then((data) => {
+  const register = async (form: { username: string; email: string; password: string; password_confirm: string }) => {
+    try {
+      const data = await fetchFromApi<{ token: string }>('/auth/register', {
+        method: 'POST',
+        body: form,
+      });
       handleAuthentification(data.token);
-      window.location.href = '/';
-    });
+      router.push('/');
+    } catch (err) {
+      throw err;
+    }
   };
 
   const logout = () => {
     token.value = null;
     user.value = null;
     localStorage.removeItem('token');
-    window.location.href = '/';
+    router.push('/');
   };
 
   const updatePreference = async (preference: Preference) => {
