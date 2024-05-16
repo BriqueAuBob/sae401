@@ -33,6 +33,10 @@ final class UserListener
         [
             'pkey' => 'display_sun_phases',
             'pvalue' => true
+        ],
+        [
+            'pkey' => 'display_humidity',
+            'pvalue' => true
         ]
     ];
 

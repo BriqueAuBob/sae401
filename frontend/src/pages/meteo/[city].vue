@@ -12,6 +12,7 @@ import Card from '../../components/Card.vue';
 import ArrowUp from '../../assets/icons/arrow-up.svg';
 import ArrowDown from '../../assets/icons/arrow-down.svg';
 import WidgetSunPhases from '../../components/widgets/SunPhases.vue';
+import WidgetHumidity from '../../components/widgets/Humidity.vue';
 
 const route = useRoute();
 const city = ref<string>(route.params.city as string);
@@ -63,9 +64,10 @@ const getWeatherStateTitle = (state: any) => {
                 </div>
               </div>
             </Card>
-            <div class="mt-4 grid grid-cols-4 gap-2">
+            <div class="mt-4 grid grid-flow-row-dense grid-cols-4 gap-2">
               <WidgetWind :wind="data?.wind" />
               <WidgetSunPhases :sys="data?.sys" />
+              <WidgetHumidity :humidity="data?.main?.humidity" />
             </div>
           </div>
           <aside class="opacity-50 duration-200 hover:opacity-100">

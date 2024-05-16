@@ -72,6 +72,11 @@ const PREFERENCES: {
     description: "Affichez l'heure de lever et de coucher du soleil dans les prévisions météorologiques.",
     value: true,
   },
+  display_humidity: {
+    title: "Afficher l'humidité",
+    description: "Affichez le taux d'humidité dans les prévisions météorologiques.",
+    value: true,
+  },
 };
 
 export default PREFERENCES;
