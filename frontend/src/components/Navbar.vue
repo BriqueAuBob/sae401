@@ -24,7 +24,7 @@ const searchCity = () => {
 
 <template>
   <div
-    class="left-O container fixed left-1/2 top-2 z-50 -translate-x-1/2 rounded-full border bg-white/80 px-6 py-4 shadow-sm backdrop-blur-sm dark:border-neutral-700 dark:bg-neutral-800/80"
+    class="left-O container fixed left-1/2 top-2 z-[90] -translate-x-1/2 rounded-full border bg-white/80 px-6 py-4 shadow-sm backdrop-blur-sm dark:border-neutral-700 dark:bg-neutral-800/80"
   >
     <div class="relative flex items-center justify-between">
       <div>
