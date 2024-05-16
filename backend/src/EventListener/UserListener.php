@@ -21,6 +21,30 @@ final class UserListener
         [
             'pkey' => 'display_min_max',
             'pvalue' => true
+        ],
+        [
+            'pkey' => 'wind_speed_unit',
+            'pvalue' => 'kmph'
+        ],
+        [
+            'pkey' => 'display_wind',
+            'pvalue' => true
+        ],
+        [
+            'pkey' => 'display_sun_phases',
+            'pvalue' => true
+        ],
+        [
+            'pkey' => 'display_humidity',
+            'pvalue' => true
+        ],
+        [
+            'pkey' => 'display_clouds',
+            'pvalue' => true
+        ],
+        [
+            'pkey' => 'display_pressure',
+            'pvalue' => true
         ]
     ];
 

@@ -51,7 +51,7 @@ const components = {
 
 <template>
   <div class="flex flex-col items-start gap-4 p-4 lg:flex-row">
-    <div>
+    <div class="w-full lg:w-2/3">
       <div class="text-md font-semibold">
         {{ wrappedPreference?.title }}
       </div>
@@ -59,7 +59,7 @@ const components = {
         {{ wrappedPreference?.description }}
       </p>
     </div>
-    <div class="flex w-full self-center lg:w-1/2 lg:justify-end">
+    <div class="flex w-full self-center lg:justify-end">
       <component
         v-if="wrappedPreference?.component"
         :is="wrappedPreference?.component"
