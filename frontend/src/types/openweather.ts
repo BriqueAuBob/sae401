@@ -64,4 +64,33 @@ type WeatherCity = {
   cod: number;
 };
 
-export type { WeatherCity, Coord, Weather, Main, Wind, Clouds, Rain, Snow, Sys };
+type Forecast = {
+  dt: number;
+  main: Main;
+  weather: Weather[];
+  clouds: Clouds;
+  wind: Wind;
+  visibility: number;
+  pop: number;
+  sys: Sys;
+  dt_txt: string;
+};
+
+type WeatherForecast = {
+  cod: string;
+  message: number;
+  city: {
+    id: number;
+    name: string;
+    coord: Coord;
+    country: string;
+    population: number;
+    timezone: number;
+    sunrise: number;
+    sunset: number;
+  };
+  cnt: number;
+  list: Forecast[];
+};
+
+export type { WeatherCity, Coord, Weather, Main, Wind, Clouds, Rain, Snow, Sys, WeatherForecast, Forecast };

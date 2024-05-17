@@ -36,8 +36,8 @@ const color = computed(() => {
   <button
     :class="[
       color,
-      `relative overflow-hidden rounded-full border border-neutral-200 px-4 py-2 font-medium shadow-sm duration-200 dark:border-neutral-400`,
-      'after:left-O from-white/50 ring-1 ring-offset-1 after:absolute after:bottom-0 after:right-0 after:top-0 after:h-full after:w-full after:bg-gradient-to-b',
+      `relative overflow-hidden rounded-full border border-neutral-400/50 px-4 py-2 font-medium shadow-sm duration-200 dark:border-neutral-600/25`,
+      'after:left-O ring-offset-primary-50 from-white/50 ring-1 ring-offset-1 after:absolute after:bottom-0 after:right-0 after:top-0 after:h-full after:w-full  after:bg-gradient-to-b dark:ring-offset-neutral-900',
       sizes[size],
     ]"
   >

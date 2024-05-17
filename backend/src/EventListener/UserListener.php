@@ -45,6 +45,10 @@ final class UserListener
         [
             'pkey' => 'display_pressure',
             'pvalue' => true
+        ],
+        [
+            'pkey' => 'display_forecast',
+            'pvalue' => true
         ]
     ];
 

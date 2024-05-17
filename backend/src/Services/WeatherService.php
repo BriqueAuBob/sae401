@@ -37,4 +37,22 @@ class WeatherService
             return $response->toArray();
         });
     }
+
+    public function getWeatherForecastFromCity(string $city)
+    {
+        return $this->cache->get($city . '_forecast', function (ItemInterface $item) use ($city) {
+            $item->expiresAfter(60 * 60);
+
+            $response = $this->httpClient->request(
+                'GET',
+                "https://api.openweathermap.org/data/2.5/forecast?q={$city}&appid={$this->apiKey}&lang=fr&units=metric"
+            );
+
+            if ($response->getStatusCode() !== 200) {
+                throw new \Exception('Failed to fetch data from API ' . $response->getStatusCode());
+            }
+
+            return $response->toArray();
+        });
+    }
 }

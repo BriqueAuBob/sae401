@@ -40,11 +40,6 @@ const PREFERENCES: {
       { value: 'dark', label: 'Sombre' },
     ],
     component: SwitchTheme,
-    events: {
-      'update:modelValue': (value: string) => {
-        console.log('value', value);
-      },
-    },
   },
   wind_speed_unit: {
     title: 'Unité de vitesse du vent',
@@ -85,6 +80,11 @@ const PREFERENCES: {
   display_pressure: {
     title: 'Afficher la pression',
     description: 'Affichez la pression atmosphérique dans les prévisions météorologiques.',
+    value: true,
+  },
+  display_forecast: {
+    title: 'Afficher les prévisions',
+    description: 'Affichez les prévisions météorologiques pour les prochains jours.',
     value: true,
   },
 };

@@ -99,9 +99,16 @@ const size = computed(() => sizes[props.size]);
         </div>
       </div>
 
+      <slot />
+
       <img v-if="isCloudy?.description === 'couvert'" :src="Cloud" alt="" class="pointer-events-none absolute -right-4 -top-4 z-20 w-32" />
       <img v-else-if="isCloudy" :src="Cloud2" alt="" class="pointer-events-none absolute -right-4 -top-4 z-20 w-32" />
-      <img v-else-if="isSunny" :src="Sun" alt="" class="pointer-events-none absolute -right-4 -top-4 z-20 w-32" />
+      <img
+        v-else-if="isSunny"
+        :src="Sun"
+        alt=""
+        class="pointer-events-none absolute -right-4 -top-4 z-20 w-32 drop-shadow-[0px_0px_30px_rgba(255,191,0,0.5)]"
+      />
       <img
         v-else-if="isRainy"
         :src="Rain"

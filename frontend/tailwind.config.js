@@ -5,8 +5,11 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx,vue}'],
   safelist: [
     {
-      pattern: /bg-.*-(500|400)/,
+      pattern: /(bg)-.*-(500|400)/,
       variants: ['hover'],
+    },
+    {
+      pattern: /(ring)-.*-(200)/,
     },
   ],
   darkMode: 'class',
