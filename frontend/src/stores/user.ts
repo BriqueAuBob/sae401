@@ -78,9 +78,8 @@ export default defineStore('user', () => {
     prefStore.pvalue = preference.pvalue;
   };
 
-  const findPreference = (key: string) => {
-    const defaultPreference = preferences[key as keyof typeof preferences] as PreferenceType;
-    console.log(key, defaultPreference);
+  const findPreference = (key: keyof typeof preferences) => {
+    const defaultPreference = preferences[key] as PreferenceType;
     return user.value
       ? user.value?.preferences?.find((p) => p.pkey === key)
       : {

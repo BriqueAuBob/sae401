@@ -22,4 +22,10 @@ class WeatherController extends AbstractController
     {
         return $this->json($this->weatherService->getWeatherFromCity($city));
     }
+
+    #[Route('/weather/{city}/forecast', name: 'app_weather_forecast', methods: ['GET'])]
+    public function forecast(string $city): JsonResponse
+    {
+        return $this->json($this->weatherService->getWeatherForecastFromCity($city));
+    }
 }
