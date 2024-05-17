@@ -25,9 +25,9 @@ const sizes = {
 const color = computed(() => {
   switch (props.color) {
     case 'white':
-      return 'bg-white text-black hover:bg-neutral-50';
+      return 'bg-white text-black hover:bg-neutral-50 ring-neutral-100';
     default:
-      return `bg-${props.color}-500 hover:bg-${props.color}-400 text-white`;
+      return `bg-${props.color}-500 hover:bg-${props.color}-400 text-white ring-${props.color}-200`;
   }
 });
 </script>
@@ -36,7 +36,8 @@ const color = computed(() => {
   <button
     :class="[
       color,
-      `rounded-full border border-neutral-200 px-4 py-2 font-medium shadow-sm duration-200 dark:border-neutral-400`,
+      `relative overflow-hidden rounded-full border border-neutral-200 px-4 py-2 font-medium shadow-sm duration-200 dark:border-neutral-400`,
+      'after:left-O from-white/50 ring-1 ring-offset-1 after:absolute after:bottom-0 after:right-0 after:top-0 after:h-full after:w-full after:bg-gradient-to-b',
       sizes[size],
     ]"
   >

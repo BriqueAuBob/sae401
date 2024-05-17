@@ -31,7 +31,7 @@ const deleteCity = (city: string) => {
           <div v-for="city in model" :key="city" class="group relative">
             <WeatherWidget :city="city" class="h-full !p-3" />
             <Button
-              class="absolute right-1.5 top-1.5 z-50 flex h-8 w-8 items-center justify-center opacity-0 duration-200 group-hover:opacity-100"
+              class="!absolute right-2 top-2 z-50 flex h-8 w-8 items-center justify-center opacity-0 duration-200 group-hover:opacity-100"
               style="padding: 0"
               color="white"
               @click="deleteCity(city)"
