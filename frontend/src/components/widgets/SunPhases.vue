@@ -23,7 +23,7 @@ const getSunrise = (timestamp: number) => {
 </script>
 
 <template>
-  <Card v-if="getPreference(preferenceName)?.pvalue" class="relative overflow-hidden duration-200 hover:grayscale">
+  <Card v-if="getPreference(preferenceName)?.pvalue" class="relative overflow-hidden">
     <div class="text-lg font-medium">Couché</div>
     <span class="text-3xl font-bold">{{ getSunrise(sys.sunset) }}</span>
     <div
