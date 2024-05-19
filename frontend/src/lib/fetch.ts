@@ -1,4 +1,4 @@
-const BASE_URL = 'http://symfony.mmi-troyes.fr:8313/api/';
+const BASE_URL = 'https://api-sae401.bclement.fr/api/';
 
 type FetchOptions = Omit<RequestInit, 'body'> & {
   body?: string | Record<string, any>;
