@@ -89,6 +89,19 @@ export default defineStore('user', () => {
         };
   };
 
+  const updateAccount = async (form: { username: string; email: string }) => {
+    try {
+      const data = await fetchFromApi<{ token: string; user: User }>('/users/@me', {
+        method: 'PUT',
+        body: form,
+      });
+      user.value = data.user;
+      return data;
+    } catch (err) {
+      throw err;
+    }
+  };
+
   return {
     user,
     token,
@@ -97,5 +110,6 @@ export default defineStore('user', () => {
     logout,
     updatePreference,
     findPreference,
+    updateAccount,
   };
 });
