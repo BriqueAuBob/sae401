@@ -23,12 +23,15 @@ const getSunrise = (timestamp: number) => {
 </script>
 
 <template>
-  <Card v-if="getPreference(preferenceName)?.pvalue">
+  <Card v-if="getPreference(preferenceName)?.pvalue" class="relative overflow-hidden">
     <div class="text-lg font-medium">Couché</div>
     <span class="text-3xl font-bold">{{ getSunrise(sys.sunset) }}</span>
+    <div
+      class="absolute -right-4 -top-4 aspect-square w-1/2 rounded-full bg-gradient-to-tr from-orange-500 to-yellow-500 shadow-2xl shadow-orange-500 blur-sm"
+    ></div>
 
-    <div class="flex items-center gap-2">
-      <div class="text-sm font-medium">Levé</div>
+    <div class="mt-2 flex items-center gap-2">
+      <div class="font-regular text-sm">Levé</div>
       <span class="text-md font-bold">{{ getSunrise(sys.sunrise) }}</span>
     </div>
   </Card>
