@@ -3,7 +3,6 @@ import { onMounted, ref } from 'vue';
 import { fetchFromApi } from '../lib/fetch';
 import type { Preference } from '../types/preference';
 import preferences, { Preference as PreferenceType } from '../lib/preferences';
-import { toast } from 'vue-sonner';
 import { useRouter } from 'vue-router';
 
 type User = {
