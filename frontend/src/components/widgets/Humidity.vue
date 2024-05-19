@@ -20,9 +20,9 @@ const strokeDasharray = computed(() => {
 </script>
 
 <template>
-  <Card v-if="getPreference(preferenceName)?.pvalue" class="relative overflow-hidden">
+  <Card v-if="getPreference(preferenceName)?.pvalue" class="relative max-w-64 overflow-hidden">
     <div class="text-lg font-medium">Humidité</div>
-    <svg viewBox="-2 -2 54 30" fill="none" class="mt-2 w-full overflow-visible lg:w-32">
+    <svg viewBox="-2 -2 54 30" fill="none" class="mt-2 w-full overflow-visible">
       <path
         class="absolute bg-transparent stroke-blue-500 blur-md"
         stroke-width="4"

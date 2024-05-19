@@ -13,7 +13,7 @@ const userStore = useUserStore();
 const router = useRouter();
 
 onMounted(() => {
-  if (!userStore.user) {
+  if (!userStore.user && !userStore.token) {
     router.push('/auth/connexion');
   }
 });
