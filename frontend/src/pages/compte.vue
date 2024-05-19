@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { onMounted, reactive, ref } from 'vue';
 import useUserStore from '../stores/user';
 import PreferencesList from '../components/preferences/List.vue';
 import Layout from '../layouts/default.vue';
@@ -7,8 +7,16 @@ import Input from '../components/Input.vue';
 import Button from '../components/Button.vue';
 import ErrorsAlert from '../components/ErrorsAlert.vue';
 import { toast } from 'vue-sonner';
+import { useRouter } from 'vue-router';
 
 const userStore = useUserStore();
+const router = useRouter();
+
+onMounted(() => {
+  if (!userStore.user) {
+    router.push('/auth/connexion');
+  }
+});
 
 const form = reactive<{
   username: string;

@@ -19,7 +19,9 @@ const citiesPreference = computed(() => getPreference('cities')?.pvalue);
       <h2 class="mx-auto mt-2 max-w-xl text-balance text-lg">
         Des prévisions météo précises et actualisées pour planifier votre journée en toute confiance, où que vous soyez
       </h2>
-      <Button class="mt-4" v-if="!authStore.user">Connexion</Button>
+      <RouterLink v-if="!authStore.user" to="/auth/connexion" class="mt-4 block">
+        <Button>Connexion</Button>
+      </RouterLink>
     </header>
     <section class="container py-8">
       <h1 class="mb-4 text-center text-xl font-bold">{{ authStore?.user ? 'Villes favorites' : 'Météo de villes connues' }}</h1>
