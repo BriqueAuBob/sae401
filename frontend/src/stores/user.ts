@@ -89,9 +89,9 @@ export default defineStore('user', () => {
         };
   };
 
-  const updateAccount = async (form: { username: string; email: string }) => {
+  const updateAccount = async (form: { username: string; email: string; password: string; password_confirm: string }) => {
     try {
-      const data = await fetchFromApi<{ token: string; user: User }>('/users/@me', {
+      const data = await fetchFromApi<{ token: string; user: User; message: string }>('/users/@me', {
         method: 'PUT',
         body: form,
       });
