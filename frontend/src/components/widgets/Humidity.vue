@@ -22,7 +22,7 @@ const strokeDasharray = computed(() => {
 <template>
   <Card v-if="getPreference(preferenceName)?.pvalue" class="relative overflow-hidden">
     <div class="text-lg font-medium">Humidité</div>
-    <svg viewBox="-2 -2 54 30" fill="none" class="mt-2 w-32 overflow-visible">
+    <svg viewBox="-2 -2 54 30" fill="none" class="mt-2 w-full overflow-visible lg:w-32">
       <path
         class="absolute bg-transparent stroke-blue-500 blur-md"
         stroke-width="4"
@@ -38,9 +38,7 @@ const strokeDasharray = computed(() => {
         d="M0 25a 25 25 90 0 1 50 0"
       />
     </svg>
-    <div class="relative -top-10">
-      <span class="absolute left-1/2 block -translate-x-1/2 text-3xl font-bold">{{ humidity }}%</span>
-    </div>
+    <span class="absolute left-1/2 top-1/2 block -translate-x-1/2 text-6xl font-bold lg:translate-y-2 lg:text-3xl">{{ humidity }}%</span>
     <img
       v-if="props.humidity > 50"
       :src="Rain"
