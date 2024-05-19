@@ -10,9 +10,14 @@ import { toast } from 'vue-sonner';
 
 const userStore = useUserStore();
 
-const form = reactive({
-  username: userStore?.user?.username,
-  email: userStore?.user?.email,
+const form = reactive<{
+  username: string;
+  email: string;
+  password: string;
+  password_confirm: string;
+}>({
+  username: userStore?.user?.username || '',
+  email: userStore?.user?.email || '',
   password: '',
   password_confirm: '',
 });
