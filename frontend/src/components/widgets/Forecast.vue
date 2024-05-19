@@ -24,7 +24,7 @@ defineProps({
 <template>
   <Card v-if="forecasts" class="w-full max-w-full">
     <div class="mb-4 text-lg font-medium">{{ title }}</div>
-    <div class="flex w-full items-start justify-between gap-8 overflow-x-auto px-4">
+    <div class="flex w-full items-start justify-between gap-2 overflow-x-auto">
       <ForecastItem v-for="weather in forecasts" :key="weather.dt" :forecast="weather" :mode="mode" />
     </div>
   </Card>

@@ -21,9 +21,6 @@ export default defineStore('user', () => {
     if (token.value) {
       const response = await fetchFromApi<User>('users/@me');
       user.value = response;
-      toast('Bonjour ' + user.value.username + ' !', {
-        duration: 2000,
-      });
     }
   };
 

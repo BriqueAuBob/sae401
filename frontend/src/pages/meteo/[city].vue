@@ -31,7 +31,7 @@ watch(
 const otherCities = ['Paris', 'London', 'New York', 'Tokyo'];
 
 const forecast = ref<Ref | null>(null);
-if (getPreference('display_forecast')) {
+if (getPreference('display_forecast')?.pvalue) {
   const { data: forecastData, getData } = useFetch<WeatherForecast>(`/weather/${city.value}/forecast`);
   forecast.value = forecastData;
   watch(
@@ -100,6 +100,7 @@ const nextDays = computed(() => {
             icon: weather?.[0].icon.replace('n', 'd'),
           },
         ],
+        forecasts: f.forecasts,
       };
     });
 });
@@ -116,7 +117,7 @@ const nextDays = computed(() => {
           <div class="lg:col-span-3">
             <WeatherWidget size="xl" class="w-full p-6 text-center" childClasses="flex flex-col items-center" :city="city">
               <WidgetForecast
-                v-if="forecast?.value"
+                v-if="forecast?.value && getPreference('display_forecast')?.pvalue"
                 :forecasts="todayOnly"
                 class="mt-4 !rounded-2xl bg-white/50 backdrop-blur-sm dark:bg-neutral-800/90"
                 title="Prévisions de la journée"
@@ -126,7 +127,7 @@ const nextDays = computed(() => {
             <div class="mt-4 grid-cols-1 gap-2 space-y-2 sm:grid md:grid-cols-2 md:space-y-0 lg:grid-flow-row-dense">
               <WidgetForecast
                 class="col-span-2 md:col-span-4"
-                v-if="forecast?.value"
+                v-if="forecast?.value && getPreference('display_forecast')?.pvalue"
                 :forecasts="nextDays"
                 title="Prévisions pour les prochains jours"
                 mode="date"
